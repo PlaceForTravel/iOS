@@ -20,6 +20,10 @@
 		2A2388012B8256070064CC9B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A2388002B8256070064CC9B /* Assets.xcassets */; };
 		2A2388042B8256070064CC9B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A2388022B8256070064CC9B /* LaunchScreen.storyboard */; };
 		2A23880E2B8263970064CC9B /* ColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A23880D2B8263970064CC9B /* ColorManager.swift */; };
+		2A9058C22B8CBE77003E27CD /* UploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9058C12B8CBE77003E27CD /* UploadViewController.swift */; };
+		2A9058C52B8CC705003E27CD /* IndexedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9058C42B8CC705003E27CD /* IndexedImage.swift */; };
+		2AC9D6CC2B8CD6030034ED43 /* UploadImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC9D6CA2B8CD6030034ED43 /* UploadImageCollectionViewCell.swift */; };
+		2AC9D6CD2B8CD6030034ED43 /* UploadImageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2AC9D6CB2B8CD6030034ED43 /* UploadImageCollectionViewCell.xib */; };
 		2ACFEBC22B826BA600EDD4D5 /* FeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACFEBC02B826BA600EDD4D5 /* FeedTableViewCell.swift */; };
 		2ACFEBC32B826BA600EDD4D5 /* FeedTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2ACFEBC12B826BA600EDD4D5 /* FeedTableViewCell.xib */; };
 		2AF251722B8374CE00648192 /* SearchHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF251702B8374CE00648192 /* SearchHistoryTableViewCell.swift */; };
@@ -38,6 +42,10 @@
 		2A2388032B8256070064CC9B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2A2388052B8256070064CC9B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2A23880D2B8263970064CC9B /* ColorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorManager.swift; sourceTree = "<group>"; };
+		2A9058C12B8CBE77003E27CD /* UploadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadViewController.swift; sourceTree = "<group>"; };
+		2A9058C42B8CC705003E27CD /* IndexedImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexedImage.swift; sourceTree = "<group>"; };
+		2AC9D6CA2B8CD6030034ED43 /* UploadImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadImageCollectionViewCell.swift; sourceTree = "<group>"; };
+		2AC9D6CB2B8CD6030034ED43 /* UploadImageCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UploadImageCollectionViewCell.xib; sourceTree = "<group>"; };
 		2ACFEBC02B826BA600EDD4D5 /* FeedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTableViewCell.swift; sourceTree = "<group>"; };
 		2ACFEBC12B826BA600EDD4D5 /* FeedTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeedTableViewCell.xib; sourceTree = "<group>"; };
 		2AF251702B8374CE00648192 /* SearchHistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHistoryTableViewCell.swift; sourceTree = "<group>"; };
@@ -83,6 +91,7 @@
 				2A2387F92B8256060064CC9B /* SceneDelegate.swift */,
 				2A23880B2B82635A0064CC9B /* ViewControllers */,
 				2ACFEBBF2B826B4C00EDD4D5 /* Views */,
+				2A9058C32B8CC6EC003E27CD /* Models */,
 				2A23880C2B8263750064CC9B /* Managers */,
 				2A2388002B8256070064CC9B /* Assets.xcassets */,
 				2A2388022B8256070064CC9B /* LaunchScreen.storyboard */,
@@ -96,6 +105,7 @@
 			children = (
 				2A2387FB2B8256060064CC9B /* FeedViewController.swift */,
 				2A12C70E2B83699700343EC6 /* SearchViewController.swift */,
+				2A9058C12B8CBE77003E27CD /* UploadViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -109,11 +119,29 @@
 			path = Managers;
 			sourceTree = "<group>";
 		};
+		2A9058C32B8CC6EC003E27CD /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				2A9058C42B8CC705003E27CD /* IndexedImage.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		2AC9D6C92B8CD5300034ED43 /* UploadVC */ = {
+			isa = PBXGroup;
+			children = (
+				2AC9D6CA2B8CD6030034ED43 /* UploadImageCollectionViewCell.swift */,
+				2AC9D6CB2B8CD6030034ED43 /* UploadImageCollectionViewCell.xib */,
+			);
+			path = UploadVC;
+			sourceTree = "<group>";
+		};
 		2ACFEBBF2B826B4C00EDD4D5 /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				2AF251742B8374D400648192 /* FeedVC */,
 				2AF251752B8374EC00648192 /* SearchVC */,
+				2AC9D6C92B8CD5300034ED43 /* UploadVC */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -207,6 +235,7 @@
 				2A2388042B8256070064CC9B /* LaunchScreen.storyboard in Resources */,
 				2ACFEBC32B826BA600EDD4D5 /* FeedTableViewCell.xib in Resources */,
 				2A2388012B8256070064CC9B /* Assets.xcassets in Resources */,
+				2AC9D6CD2B8CD6030034ED43 /* UploadImageCollectionViewCell.xib in Resources */,
 				2AF251732B8374CE00648192 /* SearchHistoryTableViewCell.xib in Resources */,
 				2A2387FF2B8256060064CC9B /* Main.storyboard in Resources */,
 			);
@@ -220,13 +249,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				2A12C70F2B83699700343EC6 /* SearchViewController.swift in Sources */,
+				2AC9D6CC2B8CD6030034ED43 /* UploadImageCollectionViewCell.swift in Sources */,
 				2A2387FC2B8256060064CC9B /* FeedViewController.swift in Sources */,
 				2A2387F82B8256060064CC9B /* AppDelegate.swift in Sources */,
 				2A12C7112B8369DD00343EC6 /* SceneManager.swift in Sources */,
+				2A9058C22B8CBE77003E27CD /* UploadViewController.swift in Sources */,
 				2AF251722B8374CE00648192 /* SearchHistoryTableViewCell.swift in Sources */,
 				2A2387FA2B8256060064CC9B /* SceneDelegate.swift in Sources */,
 				2A23880E2B8263970064CC9B /* ColorManager.swift in Sources */,
 				2ACFEBC22B826BA600EDD4D5 /* FeedTableViewCell.swift in Sources */,
+				2A9058C52B8CC705003E27CD /* IndexedImage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
