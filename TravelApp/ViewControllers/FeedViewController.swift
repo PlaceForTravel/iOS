@@ -29,7 +29,6 @@ class FeedViewController: UIViewController {
     private func initUI() {
         // 내비게이션
         self.navigationController?.navigationBar.isHidden = true
-        
         // searchStackView
         searchStackView.layer.borderWidth = 2
         searchStackView.layer.borderColor = ColorManager.shared.secondaryBorder.cgColor
@@ -59,9 +58,9 @@ class FeedViewController: UIViewController {
         
         // 글 쓰기 버튼
         uploadButtonView.rx.tapGesture()
+            .when(.recognized)
             .subscribe(onNext: { _ in
-                // TODO: 글쓰기
-                return
+                SceneManager.shared.presentUploadVC(vc: self)
             })
             .disposed(by: disposBag)
     }

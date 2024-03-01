@@ -13,6 +13,7 @@
 		2A12C70F2B83699700343EC6 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A12C70E2B83699700343EC6 /* SearchViewController.swift */; };
 		2A12C7112B8369DD00343EC6 /* SceneManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A12C7102B8369DD00343EC6 /* SceneManager.swift */; };
 		2A12C7142B836E0D00343EC6 /* RxGesture in Frameworks */ = {isa = PBXBuildFile; productRef = 2A12C7132B836E0D00343EC6 /* RxGesture */; };
+		2A17B4952B92008900F899FC /* SearchPlaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A17B4942B92008900F899FC /* SearchPlaceViewController.swift */; };
 		2A2387F82B8256060064CC9B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2387F72B8256060064CC9B /* AppDelegate.swift */; };
 		2A2387FA2B8256060064CC9B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2387F92B8256060064CC9B /* SceneDelegate.swift */; };
 		2A2387FC2B8256060064CC9B /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2387FB2B8256060064CC9B /* FeedViewController.swift */; };
@@ -33,6 +34,7 @@
 /* Begin PBXFileReference section */
 		2A12C70E2B83699700343EC6 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		2A12C7102B8369DD00343EC6 /* SceneManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneManager.swift; sourceTree = "<group>"; };
+		2A17B4942B92008900F899FC /* SearchPlaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPlaceViewController.swift; sourceTree = "<group>"; };
 		2A2387F42B8256060064CC9B /* TravelApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TravelApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A2387F72B8256060064CC9B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2A2387F92B8256060064CC9B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -67,6 +69,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2A17B4962B92164E00F899FC /* Extentions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extentions;
+			sourceTree = "<group>";
+		};
 		2A2387EB2B8256050064CC9B = {
 			isa = PBXGroup;
 			children = (
@@ -93,6 +102,7 @@
 				2ACFEBBF2B826B4C00EDD4D5 /* Views */,
 				2A9058C32B8CC6EC003E27CD /* Models */,
 				2A23880C2B8263750064CC9B /* Managers */,
+				2A17B4962B92164E00F899FC /* Extentions */,
 				2A2388002B8256070064CC9B /* Assets.xcassets */,
 				2A2388022B8256070064CC9B /* LaunchScreen.storyboard */,
 				2A2388052B8256070064CC9B /* Info.plist */,
@@ -106,6 +116,7 @@
 				2A2387FB2B8256060064CC9B /* FeedViewController.swift */,
 				2A12C70E2B83699700343EC6 /* SearchViewController.swift */,
 				2A9058C12B8CBE77003E27CD /* UploadViewController.swift */,
+				2A17B4942B92008900F899FC /* SearchPlaceViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -256,6 +267,7 @@
 				2A9058C22B8CBE77003E27CD /* UploadViewController.swift in Sources */,
 				2AF251722B8374CE00648192 /* SearchHistoryTableViewCell.swift in Sources */,
 				2A2387FA2B8256060064CC9B /* SceneDelegate.swift in Sources */,
+				2A17B4952B92008900F899FC /* SearchPlaceViewController.swift in Sources */,
 				2A23880E2B8263970064CC9B /* ColorManager.swift in Sources */,
 				2ACFEBC22B826BA600EDD4D5 /* FeedTableViewCell.swift in Sources */,
 				2A9058C52B8CC705003E27CD /* IndexedImage.swift in Sources */,

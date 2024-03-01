@@ -16,6 +16,8 @@ class SceneManager {
     enum Scene: String {
         case feedVC = "FeedViewController"
         case searchVC = "SearchViewController"
+        case uploadVC = "UploadViewController"
+        case searchPlaceVC = "SearchPlaceViewController"
     }
     
     private func getVC(scene: Scene) -> UIViewController {
@@ -30,4 +32,21 @@ class SceneManager {
         vc.navigationController?.pushViewController(searchVC, animated: true)
     }
     
+    func presentUploadVC(vc: UIViewController) {
+        print("\(type(of: self)) - \(#function)")
+        
+        let uploadVC = getVC(scene: .uploadVC) as! UploadViewController
+        uploadVC.modalPresentationStyle = .overFullScreen
+//        uploadVC.hidesBottomBarWhenPushed = true
+        vc.present(uploadVC, animated: true)
+    }
+    
+    func presentSearchPlaceVC(vc: UIViewController) {
+        print("\(type(of: self)) - \(#function)")
+        
+        let searchPlaceVC = getVC(scene: .searchPlaceVC) as! SearchPlaceViewController
+        searchPlaceVC.modalPresentationStyle = .overFullScreen
+        searchPlaceVC.modalTransitionStyle = .crossDissolve
+        vc.present(searchPlaceVC, animated: true)
+    }
 }

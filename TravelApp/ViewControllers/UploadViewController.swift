@@ -7,31 +7,57 @@
 
 import UIKit
 import PhotosUI
+import RxSwift
+import RxCocoa
+import RxGesture
 
 class UploadViewController: UIViewController {
     
     /// 선택된 결과를 저장하는 PHPickerResult 배열
     var selectedResults: [PHPickerResult] = []
     var selectedUIImages: [IndexedImage] = []
+    
+    let disposBag = DisposeBag()
 
     @IBOutlet var uploadImageCollectionView: UICollectionView!
+    @IBOutlet var selectPlaceButtonStackView: UIStackView!
+    
+    // MARK: - LifeCycles
     override func viewDidLoad() {
         super.viewDidLoad()
         
         presentPicker()
         initUI()
+        action()
     }
-    
-    func initUI() {
+
+    // MARK: - initUI
+    private func initUI() {
         uploadImageCollectionView.dataSource = self
         uploadImageCollectionView.delegate = self
         let uploadImageCollectionViewCell = UINib(nibName: "UploadImageCollectionViewCell", bundle: nil)
         uploadImageCollectionView.register(uploadImageCollectionViewCell, forCellWithReuseIdentifier: "UploadImageCollectionViewCell")
+        let uploadImageCollectionViewFlowLayout = UICollectionViewFlowLayout()
+        uploadImageCollectionViewFlowLayout.scrollDirection = .horizontal
+        uploadImageCollectionView.collectionViewLayout = uploadImageCollectionViewFlowLayout
+        uploadImageCollectionView.isPagingEnabled = true
+    }
+    
+    // MARK: - action
+    private func action() {
+        // 장소 선택 버튼
+        selectPlaceButtonStackView.rx.tapGesture()
+            .when(.recognized)
+            .subscribe(onNext: { _ in
+                SceneManager.shared.presentSearchPlaceVC(vc: self)
+            })
+            .disposed(by: disposBag)
     }
 
 }
 
-extension UploadViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+// MARK: - UICollectionView
+extension UploadViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return selectedResults.count
@@ -39,7 +65,30 @@ extension UploadViewController: UICollectionViewDataSource, UICollectionViewDele
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = uploadImageCollectionView.dequeueReusableCell(withReuseIdentifier: "UploadImageCollectionViewCell", for: indexPath) as! UploadImageCollectionViewCell
+        if let indexedImage = selectedUIImages.first(where: { $0.index == indexPath.row }) {
+            cell.setData(image: indexedImage.image)
+        } else {
+            cell.setData(image: nil)
+        }
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return collectionView.bounds.size
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+    }
+    
+    // 섹션 간의 수직 간격 설정
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
+    
+    // 섹션 내 아이템 간의 수평 간격 설정
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
     }
     
 }
