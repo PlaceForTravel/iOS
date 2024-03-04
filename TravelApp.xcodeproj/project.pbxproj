@@ -14,6 +14,7 @@
 		2A12C7112B8369DD00343EC6 /* SceneManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A12C7102B8369DD00343EC6 /* SceneManager.swift */; };
 		2A12C7142B836E0D00343EC6 /* RxGesture in Frameworks */ = {isa = PBXBuildFile; productRef = 2A12C7132B836E0D00343EC6 /* RxGesture */; };
 		2A17B4952B92008900F899FC /* SearchPlaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A17B4942B92008900F899FC /* SearchPlaceViewController.swift */; };
+		2A17B4992B92E0A800F899FC /* RxKeyboard in Frameworks */ = {isa = PBXBuildFile; productRef = 2A17B4982B92E0A800F899FC /* RxKeyboard */; };
 		2A2387F82B8256060064CC9B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2387F72B8256060064CC9B /* AppDelegate.swift */; };
 		2A2387FA2B8256060064CC9B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2387F92B8256060064CC9B /* SceneDelegate.swift */; };
 		2A2387FC2B8256060064CC9B /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2387FB2B8256060064CC9B /* FeedViewController.swift */; };
@@ -63,6 +64,7 @@
 				2A12C7092B83689000343EC6 /* RxCocoa in Frameworks */,
 				2A12C7142B836E0D00343EC6 /* RxGesture in Frameworks */,
 				2A12C70D2B83689000343EC6 /* RxSwift in Frameworks */,
+				2A17B4992B92E0A800F899FC /* RxKeyboard in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -196,6 +198,7 @@
 				2A12C70A2B83689000343EC6 /* RxRelay */,
 				2A12C70C2B83689000343EC6 /* RxSwift */,
 				2A12C7132B836E0D00343EC6 /* RxGesture */,
+				2A17B4982B92E0A800F899FC /* RxKeyboard */,
 			);
 			productName = TravelApp;
 			productReference = 2A2387F42B8256060064CC9B /* TravelApp.app */;
@@ -228,6 +231,7 @@
 			packageReferences = (
 				2A12C7052B83689000343EC6 /* XCRemoteSwiftPackageReference "RxSwift" */,
 				2A12C7122B836E0D00343EC6 /* XCRemoteSwiftPackageReference "RxGesture" */,
+				2A17B4972B92E0A800F899FC /* XCRemoteSwiftPackageReference "RxKeyboard" */,
 			);
 			productRefGroup = 2A2387F52B8256060064CC9B /* Products */;
 			projectDirPath = "";
@@ -511,6 +515,14 @@
 				minimumVersion = 4.0.4;
 			};
 		};
+		2A17B4972B92E0A800F899FC /* XCRemoteSwiftPackageReference "RxKeyboard" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RxSwiftCommunity/RxKeyboard.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -533,6 +545,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2A12C7122B836E0D00343EC6 /* XCRemoteSwiftPackageReference "RxGesture" */;
 			productName = RxGesture;
+		};
+		2A17B4982B92E0A800F899FC /* RxKeyboard */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2A17B4972B92E0A800F899FC /* XCRemoteSwiftPackageReference "RxKeyboard" */;
+			productName = RxKeyboard;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

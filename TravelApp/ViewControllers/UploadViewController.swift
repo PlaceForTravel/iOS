@@ -19,6 +19,7 @@ class UploadViewController: UIViewController {
     
     let disposBag = DisposeBag()
 
+    @IBOutlet var closeButton: UIButton!
     @IBOutlet var uploadImageCollectionView: UICollectionView!
     @IBOutlet var selectPlaceButtonStackView: UIStackView!
     
@@ -33,6 +34,7 @@ class UploadViewController: UIViewController {
 
     // MARK: - initUI
     private func initUI() {
+        // uploadImageCollectionView
         uploadImageCollectionView.dataSource = self
         uploadImageCollectionView.delegate = self
         let uploadImageCollectionViewCell = UINib(nibName: "UploadImageCollectionViewCell", bundle: nil)
@@ -41,10 +43,22 @@ class UploadViewController: UIViewController {
         uploadImageCollectionViewFlowLayout.scrollDirection = .horizontal
         uploadImageCollectionView.collectionViewLayout = uploadImageCollectionViewFlowLayout
         uploadImageCollectionView.isPagingEnabled = true
+        
+        // selectPlaceButtonStackView
+        selectPlaceButtonStackView.layer.borderWidth = 1
+        selectPlaceButtonStackView.layer.borderColor = UIColor.black.cgColor
+        selectPlaceButtonStackView.layer.cornerRadius = 12
     }
     
     // MARK: - action
     private func action() {
+        // 닫기 버튼
+        closeButton.rx.tap
+            .subscribe { _ in
+                self.dismiss(animated: true)
+            }
+            .disposed(by: disposBag)
+        
         // 장소 선택 버튼
         selectPlaceButtonStackView.rx.tapGesture()
             .when(.recognized)
@@ -52,6 +66,7 @@ class UploadViewController: UIViewController {
                 SceneManager.shared.presentSearchPlaceVC(vc: self)
             })
             .disposed(by: disposBag)
+        
     }
 
 }
