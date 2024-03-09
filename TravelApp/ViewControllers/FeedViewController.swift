@@ -22,6 +22,7 @@ class FeedViewController: UIViewController {
         super.viewDidLoad()
 
         initUI()
+        initData()
         action()
     }
     
@@ -44,6 +45,11 @@ class FeedViewController: UIViewController {
         uploadButtonView.layer.cornerRadius = 8
         uploadButtonView.layer.borderWidth = 2
         uploadButtonView.layer.borderColor = ColorManager.shared.secondary.cgColor
+    }
+    
+    // MARK: - initData
+    private func initData() {
+        
     }
     
     // MARK: - action

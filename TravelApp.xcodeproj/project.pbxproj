@@ -24,6 +24,8 @@
 		2A23880E2B8263970064CC9B /* ColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A23880D2B8263970064CC9B /* ColorManager.swift */; };
 		2A9058C22B8CBE77003E27CD /* UploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9058C12B8CBE77003E27CD /* UploadViewController.swift */; };
 		2A9058C52B8CC705003E27CD /* IndexedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9058C42B8CC705003E27CD /* IndexedImage.swift */; };
+		2A95AB792B9C3E9E00AAB800 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A95AB782B9C3E9E00AAB800 /* DataManager.swift */; };
+		2A95AB7B2B9C3F2800AAB800 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A95AB7A2B9C3F2800AAB800 /* UIView+.swift */; };
 		2AC9D6CC2B8CD6030034ED43 /* UploadImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC9D6CA2B8CD6030034ED43 /* UploadImageCollectionViewCell.swift */; };
 		2AC9D6CD2B8CD6030034ED43 /* UploadImageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2AC9D6CB2B8CD6030034ED43 /* UploadImageCollectionViewCell.xib */; };
 		2ACFEBC22B826BA600EDD4D5 /* FeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACFEBC02B826BA600EDD4D5 /* FeedTableViewCell.swift */; };
@@ -47,6 +49,8 @@
 		2A23880D2B8263970064CC9B /* ColorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorManager.swift; sourceTree = "<group>"; };
 		2A9058C12B8CBE77003E27CD /* UploadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadViewController.swift; sourceTree = "<group>"; };
 		2A9058C42B8CC705003E27CD /* IndexedImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexedImage.swift; sourceTree = "<group>"; };
+		2A95AB782B9C3E9E00AAB800 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		2A95AB7A2B9C3F2800AAB800 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 		2AC9D6CA2B8CD6030034ED43 /* UploadImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		2AC9D6CB2B8CD6030034ED43 /* UploadImageCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UploadImageCollectionViewCell.xib; sourceTree = "<group>"; };
 		2ACFEBC02B826BA600EDD4D5 /* FeedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTableViewCell.swift; sourceTree = "<group>"; };
@@ -74,6 +78,7 @@
 		2A17B4962B92164E00F899FC /* Extentions */ = {
 			isa = PBXGroup;
 			children = (
+				2A95AB7A2B9C3F2800AAB800 /* UIView+.swift */,
 			);
 			path = Extentions;
 			sourceTree = "<group>";
@@ -128,6 +133,7 @@
 			children = (
 				2A23880D2B8263970064CC9B /* ColorManager.swift */,
 				2A12C7102B8369DD00343EC6 /* SceneManager.swift */,
+				2A95AB782B9C3E9E00AAB800 /* DataManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -265,6 +271,7 @@
 			files = (
 				2A12C70F2B83699700343EC6 /* SearchViewController.swift in Sources */,
 				2AC9D6CC2B8CD6030034ED43 /* UploadImageCollectionViewCell.swift in Sources */,
+				2A95AB7B2B9C3F2800AAB800 /* UIView+.swift in Sources */,
 				2A2387FC2B8256060064CC9B /* FeedViewController.swift in Sources */,
 				2A2387F82B8256060064CC9B /* AppDelegate.swift in Sources */,
 				2A12C7112B8369DD00343EC6 /* SceneManager.swift in Sources */,
@@ -274,6 +281,7 @@
 				2A17B4952B92008900F899FC /* SearchPlaceViewController.swift in Sources */,
 				2A23880E2B8263970064CC9B /* ColorManager.swift in Sources */,
 				2ACFEBC22B826BA600EDD4D5 /* FeedTableViewCell.swift in Sources */,
+				2A95AB792B9C3E9E00AAB800 /* DataManager.swift in Sources */,
 				2A9058C52B8CC705003E27CD /* IndexedImage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
