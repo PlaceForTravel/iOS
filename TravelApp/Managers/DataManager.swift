@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import RxSwift
 
 class DataManager {
     
@@ -14,4 +15,8 @@ class DataManager {
     private init() { }
     
     
+    
+    func fetchBoardPosts() {
+        
+    }
 }
