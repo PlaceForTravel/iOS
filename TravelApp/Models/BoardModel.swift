@@ -7,11 +7,11 @@
 
 import Foundation
 
-struct BoardResponse: Decodable {
+struct BoardResponse: Codable {
     let content: [BoardModel]
 }
 
-struct BoardModel: Decodable {
+struct BoardModel: Codable {
     
     let boardId: Int
     let userId: String
@@ -21,10 +21,10 @@ struct BoardModel: Decodable {
     let modifiedDate: Date?
     let deletedDate: Date?
     let cityName: String
-    let imgUrl: [String]
+    let imageURLs: [URL]
     let like: Bool
     
-    enum Key: String {
+    private enum CodingKeys: String, CodingKey {
         case boardId
         case userId
         case likeCount
@@ -33,28 +33,8 @@ struct BoardModel: Decodable {
         case modifiedDate
         case deletedDate
         case cityName
-        case imgUrl
+        case imageURLs = "imgUrl"
         case like
-    }
-    
-    init(data: [String: Any]) {
-        self.boardId = data[Key.boardId.rawValue] as? Int ?? 0
-        self.userId = data[Key.userId.rawValue] as? String ?? ""
-        self.likeCount = data[Key.likeCount.rawValue] as? Int ?? 0
-        self.nickname = data[Key.nickname.rawValue] as? String ?? ""
-        // regDate
-        let regDateStr: String = data[Key.regDate.rawValue] as? String ?? ""
-        self.regDate = DateManager.shared.dateFromString(regDateStr)
-        // modifiedDate
-        let modifiedDateStr: String = data[Key.modifiedDate.rawValue] as? String ?? ""
-        self.modifiedDate = DateManager.shared.dateFromString(modifiedDateStr)
-        // deletedDate
-        let deletedDateStr: String = data[Key.deletedDate.rawValue] as? String ?? ""
-        self.deletedDate = DateManager.shared.dateFromString(deletedDateStr)
-        
-        self.cityName = data[Key.cityName.rawValue] as? String ?? ""
-        self.imgUrl = data[Key.imgUrl.rawValue] as? [String] ?? []
-        self.like = data[Key.like.rawValue] as? Bool ?? false
     }
     
     static func decode(jsonString: String) -> [BoardModel]? {
@@ -68,6 +48,43 @@ struct BoardModel: Decodable {
         }
         let boards: [BoardModel] = response.content
         return boards
+    }
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        // boardId
+        self.boardId = try container.decode(Int.self, forKey: .boardId)
+        
+        // userId
+        self.userId = try container.decode(String.self, forKey: .userId)
+        
+        // likeCount
+        self.likeCount = try container.decode(Int.self, forKey: .likeCount)
+        
+        // nickname
+        self.nickname = try container.decode(String.self, forKey: .nickname)
+        
+        // regDate
+        let regDateStr = try container.decodeIfPresent(String.self, forKey: .regDate)
+        self.regDate = DateManager.shared.dateFromString(regDateStr ?? "")
+        
+        // modifiedDate
+        let modifiedDateStr = try container.decodeIfPresent(String.self, forKey: .modifiedDate)
+        self.modifiedDate = DateManager.shared.dateFromString(modifiedDateStr ?? "")
+        
+        // deletedDate
+        let deletedDateStr = try container.decodeIfPresent(String.self, forKey: .deletedDate)
+        self.deletedDate = DateManager.shared.dateFromString(deletedDateStr ?? "")
+        
+        // deletedDate
+        self.cityName =  try container.decode(String.self, forKey: .cityName)
+        
+        // imgURLs
+        self.imageURLs = try container.decodeIfPresent([URL].self, forKey: .imageURLs) ?? []
+        
+        // like
+        self.like = try container.decode(Bool.self, forKey: .like)
     }
     
 }

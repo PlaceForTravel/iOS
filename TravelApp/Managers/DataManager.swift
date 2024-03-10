@@ -12,11 +12,14 @@ class DataManager {
     
     static let shared = DataManager()
     
+    var boards: [BoardModel] = []
+    
+    let fetchBoardsDone = PublishSubject<Void>()
+    
     private init() { }
-    
-    
-    
-    func fetchBoardPosts() {
+        
+    func fetchBoards() {
+        print("\(type(of: self)) - \(#function)")
         let jsonString = """
         {
             "content": [
@@ -121,54 +124,8 @@ class DataManager {
             "empty": false
         }
         """
-//        guard let jsonData: Data = jsonString.data(using: .utf8) else { return }
-//
-//        // 최상위 JSON 구조를 매핑하기 위한 구조체
-//        
-//
-//        // JSON 디코딩
-//        do {
-//            let decoder = JSONDecoder()
-//            // Date 형식에 맞게 decoder 설정
-//            decoder.dateDecodingStrategy = .iso8601
-//            let response = try decoder.decode(Response.self, from: jsonData)
-//            let boards = response.content // BoardModel의 배열
-//            
-//            // boards를 사용하여 필요한 작업 수행
-//        } catch {
-//            print(error)
-//        }
-        
-
-
-
-        // JSON 인코딩
-        let user: User = User(name: "홍길동", age: 24, email: "hong@example.com")
-        let encoder: JSONEncoder = JSONEncoder()
-        encoder.outputFormatting = .prettyPrinted
-        if let jsonData: Data = try? encoder.encode(user),
-           let jsonString = String(data: jsonData, encoding: .utf8) {
-            print(jsonString) // JSON 문자열 출력
-        }
-
-        // JSON 디코딩
-//        let jsonString = """
-//        {
-//            "name": "홍길동",
-//            "age": 24,
-//            "email": "hong@example.com"
-//        }
-//        """
-        if let jsonData: Data = jsonString.data(using: .utf8),
-           let user: User = try? JSONDecoder().decode(User.self, from: jsonData) {
-            print("이름: \(user.name), 나이: \(user.age), 이메일: \(user.email)")
-        }
-
+        boards = BoardModel.decode(jsonString: jsonString) ?? []
+        fetchBoardsDone.onNext(())
     }
-}
-
-struct User: Codable {
-    var name: String
-    var age: Int
-    var email: String
+        
 }

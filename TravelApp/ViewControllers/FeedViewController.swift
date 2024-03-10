@@ -11,7 +11,7 @@ import RxGesture
 
 class FeedViewController: UIViewController {
     
-    let disposBag = DisposeBag()
+    let disposeBag = DisposeBag()
 
     @IBOutlet var searchStackView: UIStackView!
     @IBOutlet var feedTableView: UITableView!
@@ -24,6 +24,7 @@ class FeedViewController: UIViewController {
         initUI()
         initData()
         action()
+        bind()
     }
     
     // MARK: - initUI
@@ -49,7 +50,7 @@ class FeedViewController: UIViewController {
     
     // MARK: - initData
     private func initData() {
-        
+        DataManager.shared.fetchBoards()
     }
     
     // MARK: - action
@@ -60,7 +61,7 @@ class FeedViewController: UIViewController {
             .subscribe(onNext: { _ in
                 SceneManager.shared.pushSearchVC(vc: self)
             })
-            .disposed(by: disposBag)
+            .disposed(by: disposeBag)
         
         // 글 쓰기 버튼
         uploadButtonView.rx.tapGesture()
@@ -68,7 +69,17 @@ class FeedViewController: UIViewController {
             .subscribe(onNext: { _ in
                 SceneManager.shared.presentUploadVC(vc: self)
             })
-            .disposed(by: disposBag)
+            .disposed(by: disposeBag)
+    }
+    
+    // MARK: - bind
+    private func bind() {
+        DataManager.shared.fetchBoardsDone
+            .subscribe { _ in
+                print("\(type(of: self)) \(#function)")
+                self.feedTableView.reloadData()
+            }
+            .disposed(by: disposeBag)
     }
 
 }
@@ -77,12 +88,13 @@ class FeedViewController: UIViewController {
 extension FeedViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return DataManager.shared.boards.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = feedTableView.dequeueReusableCell(withIdentifier: "FeedTableViewCell") as! FeedTableViewCell
         cell.selectionStyle = .none
+        cell.setData(board: DataManager.shared.boards[indexPath.row])
         return cell
     }
     

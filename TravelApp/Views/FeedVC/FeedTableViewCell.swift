@@ -9,6 +9,8 @@ import UIKit
 
 class FeedTableViewCell: UITableViewCell {
     
+    private var board: BoardModel? = nil
+    
     @IBOutlet var rootStackView: UIStackView!
     @IBOutlet var placeLabel: UILabel!
     @IBOutlet var imageCollectionView: UICollectionView!
@@ -23,11 +25,22 @@ class FeedTableViewCell: UITableViewCell {
 
         initUI()
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    
+    override func prepareForReuse() {
+        self.board = nil
+    }
+    
+    func setData(board: BoardModel) {
+        print("\(type(of: self)) - \(#function)")
+        
+        // board
+        self.board = board
+        
+        // placeLabel
+        placeLabel.text = board.cityName
+        
+        // writerNameLabel
+        writerNameLabel.text = board.nickname
     }
     
     // MARK: - initUI
@@ -37,6 +50,41 @@ class FeedTableViewCell: UITableViewCell {
         
         // imageCollectionView
         imageCollectionView.layer.cornerRadius = 12
+        imageCollectionView.dataSource = self
+        imageCollectionView.delegate = self
+        let feedImageCollectionViewCell = UINib(nibName: "FeedImageCollectionViewCell", bundle: nil)
+        imageCollectionView.register(feedImageCollectionViewCell, forCellWithReuseIdentifier: "FeedImageCollectionViewCell")
+        let imageCollectionViewFlowLayout = UICollectionViewFlowLayout()
+        imageCollectionViewFlowLayout.scrollDirection = .horizontal
+        imageCollectionView.collectionViewLayout = imageCollectionViewFlowLayout
+        imageCollectionView.isPagingEnabled = true
+        imageCollectionView.bounces = false
+        imageCollectionView.showsHorizontalScrollIndicator = false
     }
     
+}
+
+extension FeedTableViewCell: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return self.board?.imageURLs.count ?? 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = imageCollectionView.dequeueReusableCell(withReuseIdentifier: "FeedImageCollectionViewCell", for: indexPath) as! FeedImageCollectionViewCell
+        cell.setData(board: board, indexPath: indexPath)
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return collectionView.bounds.size
+    }
 }
