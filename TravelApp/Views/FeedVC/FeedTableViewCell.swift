@@ -9,6 +9,7 @@ import UIKit
 
 class FeedTableViewCell: UITableViewCell {
     
+    // 고민... board을 여기에 저장해도 되는가...?
     private var board: BoardModel? = nil
     
     @IBOutlet var rootStackView: UIStackView!

@@ -32,7 +32,7 @@ class FeedViewController: UIViewController {
         // 내비게이션
         self.navigationController?.navigationBar.isHidden = true
         // searchStackView
-        searchStackView.layer.borderWidth = 2
+        searchStackView.layer.borderWidth = 1
         searchStackView.layer.borderColor = ColorManager.shared.secondaryBorder.cgColor
         searchStackView.layer.cornerRadius = searchStackView.frame.height/2
         

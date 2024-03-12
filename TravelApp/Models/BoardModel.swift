@@ -8,7 +8,62 @@
 import Foundation
 
 struct BoardResponse: Codable {
+    
     let content: [BoardModel]
+    let totalElements: Int
+    let pageable: Pageable
+    let sort: Sort
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        // content
+        content = try container.decode([BoardModel].self, forKey: .content)
+        
+        // totalElements
+        totalElements = try container.decode(Int.self, forKey: .totalElements)
+        
+        // pageable
+        pageable = try container.decode(Pageable.self, forKey: .pageable)
+        
+        // sort
+        sort = try container.decode(Sort.self, forKey: .sort)
+    }
+    
+    struct Pageable: Codable {
+        let sort: Sort
+        let offset: Int
+        let pageNumber: Int
+        let pageSize: Int
+        let paged: Bool
+        let unpaged: Bool
+    }
+    
+    struct Sort: Codable {
+        let empty: Bool
+        let sorted: Bool
+        let unsorted: Bool
+    }
+    
+    static func decode(jsonString: String) -> BoardResponse? {
+        print("\(type(of: self)) - \(#function)")
+        
+        guard let jsonData: Data = jsonString.data(using: .utf8) else {
+            print("Error: JSON 문자열을 Data 객체로 변환할 수 없음.")
+            return nil
+        }
+        
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .iso8601
+        do {
+            let response = try decoder.decode(BoardResponse.self, from: jsonData)
+            return response
+        } catch {
+            print("Decoding error: \(error)")
+            return nil
+        }
+    }
+    
 }
 
 struct BoardModel: Codable {
@@ -35,19 +90,6 @@ struct BoardModel: Codable {
         case cityName
         case imageURLs = "imgUrl"
         case like
-    }
-    
-    static func decode(jsonString: String) -> [BoardModel]? {
-        guard let jsonData = jsonString.data(using: .utf8) else {
-            return nil
-        }
-        let decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = .iso8601
-        guard let response: BoardResponse = try? decoder.decode(BoardResponse.self, from: jsonData) else {
-            return nil
-        }
-        let boards: [BoardModel] = response.content
-        return boards
     }
     
     init(from decoder: Decoder) throws {
@@ -87,4 +129,30 @@ struct BoardModel: Codable {
         self.like = try container.decode(Bool.self, forKey: .like)
     }
     
+}
+
+extension BoardResponse: CustomStringConvertible {
+    var description: String {
+        let contentDescriptions = content.map { $0.description }.joined(separator: ", ")
+        return "Content: [\(contentDescriptions)], Total Elements: \(totalElements), Pageable: \(pageable), Sort: \(sort)"
+    }
+}
+
+extension BoardModel: CustomStringConvertible {
+    var description: String {
+        "Board ID: \(boardId), User ID: \(userId), Like Count: \(likeCount), Nickname: \(nickname), Registration Date: \(regDate as Any), Modified Date: \(modifiedDate as Any), Deleted Date: \(deletedDate as Any), City Name: \(cityName), Image URLs: \(imageURLs), Like: \(like)"
+    }
+}
+
+// Pageable과 Sort 구조체에도 CustomStringConvertible 적용
+extension BoardResponse.Pageable: CustomStringConvertible {
+    var description: String {
+        "Sort: \(sort), Offset: \(offset), Page Number: \(pageNumber), Page Size: \(pageSize), Paged: \(paged), Unpaged: \(unpaged)"
+    }
+}
+
+extension BoardResponse.Sort: CustomStringConvertible {
+    var description: String {
+        "Empty: \(empty), Sorted: \(sorted), Unsorted: \(unsorted)"
+    }
 }

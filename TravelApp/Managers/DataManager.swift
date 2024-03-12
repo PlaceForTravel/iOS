@@ -20,6 +20,7 @@ class DataManager {
         
     func fetchBoards() {
         print("\(type(of: self)) - \(#function)")
+        
         let jsonString = """
         {
             "content": [
@@ -124,7 +125,11 @@ class DataManager {
             "empty": false
         }
         """
-        boards = BoardModel.decode(jsonString: jsonString) ?? []
+        guard let boardResponse: BoardResponse = BoardResponse.decode(jsonString: jsonString) else {
+            return
+        }
+        print("안녕", boardResponse.pageable.offset)
+        boards = boardResponse.content
         fetchBoardsDone.onNext(())
     }
         
